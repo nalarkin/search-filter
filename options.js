@@ -4,6 +4,27 @@ storedData.then(data => {
     let filteredDomains = getBlacklistOrDefault(data);
 
     let list = document.querySelector('#blacklist');
+
+
+    /**
+     * Other useful commands: 
+     * document.body.onload = addElement;
+
+        function addElement () {
+            // create a new div element
+            const newDiv = document.createElement("div");
+
+            // and give it some content
+            const newContent = document.createTextNode("Hi there and greetings!");
+
+            // add the text node to the newly created div
+            newDiv.appendChild(newContent);
+
+            // add the newly created element and its content into the DOM
+            const currentDiv = document.getElementById("div1");
+            document.body.insertBefore(newDiv, currentDiv);
+        }
+     */
     for (let domain of filteredDomains) {
         // Create the list item:
         let listItem = document.createElement('li');
@@ -54,6 +75,7 @@ function removeItemFromBlacklist(domain) {
         });
 }
 
+// Convert to map, which will allow for more options in fucture
 function getOptionsOrDefault(data) {
     /* Return "Show Filtered Results on Page or default (true)" */
     if (data.showFilteredResults === null) {
@@ -62,6 +84,8 @@ function getOptionsOrDefault(data) {
     return data.showFilteredResults;
 }
 
+
+// Convert to Map
 function getBlacklistOrDefault(data) {
     /* Return stored blacklist of domain or empty array [] */
     if (!data.filteredDomains) {

@@ -1,3 +1,10 @@
+/**
+ * Currently uses a list (BAD)
+ * Change to a dictionary
+ * Identify google result root by looking at the the "cite" element for each result, class="iUh30 Zu0yb qLRx3b tjvcx"
+ */
+
+
 function filterResults(mutationsList) {
     /* Identify all results whose data-domain attribute matches one in the blacklist
         and then apply filtering to it so that its not visible.
@@ -45,6 +52,7 @@ function getOptionsOrDefault(data) {
     return data.showFilteredResults;
 }
 
+// TODO: Convert to dictionary
 function getBlacklistOrDefault(data) {
     /* Return stored blacklist of domain or empty array [] */
     if (!data.filteredDomains) {
@@ -98,6 +106,8 @@ function wrapAndCollapseResult(resultNode) {
 register the observer on the results page to watch for child node changes on the results div
 that are elements with a data-domain element.
 */
+
+// Calls filterResults when changes occur in the DOM
 let resultsObserver = new MutationObserver(filterResults);
 let resultDiv = document.querySelector('#links');
 if (resultDiv) {
